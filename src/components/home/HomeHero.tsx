@@ -1,9 +1,7 @@
 "use client";
 
-import React, { useRef, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Points, PointMaterial } from "@react-three/drei";
-import * as THREE from "three";
+import React, { useRef } from "react";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -13,41 +11,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-function ParticleSwarm() {
-  const ref = useRef<THREE.Points>(null);
-  
-  // Custom particle positions
-  const [positions] = useMemo(() => {
-    const count = 3000;
-    const positions = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 10;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
-    }
-    return [positions];
-  }, []);
-
-  useFrame((state, delta) => {
-    if (ref.current) {
-      ref.current.rotation.x -= delta / 10;
-      ref.current.rotation.y -= delta / 15;
-    }
-  });
-
-  return (
-    <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
-      <PointMaterial
-        transparent
-        color="#D4AF37"
-        size={0.02}
-        sizeAttenuation={true}
-        depthWrite={false}
-        opacity={0.6}
-      />
-    </Points>
-  );
-}
+const HeroCanvas = dynamic(() => import("./HeroCanvas"), { ssr: false });
 
 export default function HomeHero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -73,9 +37,7 @@ export default function HomeHero() {
     <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-black flex items-center justify-center">
       {/* 3D Background */}
       <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 1] }}>
-          <ParticleSwarm />
-        </Canvas>
+        <HeroCanvas />
       </div>
       
       {/* Overlay Content */}
