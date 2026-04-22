@@ -3,6 +3,7 @@
 import HomeHero from "@/components/home/HomeHero";
 import StatsBar from "@/components/home/StatsBar";
 import ServicesPreview from "@/components/home/ServicesPreview";
+import ExperienceSection from "@/components/home/ExperienceSection";
 import AboutPreview from "@/components/home/AboutPreview";
 import InstaFeed from "@/components/home/InstaFeed";
 import BookingCTA from "@/components/home/BookingCTA";
@@ -13,6 +14,7 @@ export default function Home() {
       <HomeHero />
       <StatsBar />
       <ServicesPreview />
+      <ExperienceSection />
       <AboutPreview />
       <InstaFeed />
       <BookingCTA />

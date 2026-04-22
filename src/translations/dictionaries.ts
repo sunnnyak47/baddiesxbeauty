@@ -101,6 +101,14 @@ export const translations = {
     contact_title: "Contact",
     contact_desc: "Prenez contact avec notre studio.",
     
+    // Experience Section
+    experience_step_1_title: "L'Art de la Transformation",
+    experience_step_1_text: "Plus qu'un maquillage, une révélation de votre pouvoir intérieur.",
+    experience_step_2_title: "L'Excellence du Détail",
+    experience_step_2_text: "Chaque trait est une signature, chaque fini est une perfection.",
+    experience_step_3_title: "Votre Moment",
+    experience_step_3_text: "Entrez dans un sanctuaire où vous êtes l'unique priorité.",
+    
     // Footer
     footer_rights: "Tous droits réservés.",
   },
@@ -203,6 +211,14 @@ export const translations = {
     formations_desc: "Learn the secrets of professional makeup.",
     contact_title: "Contact",
     contact_desc: "Get in touch with our studio.",
+    
+    // Experience Section
+    experience_step_1_title: "The Art of Transformation",
+    experience_step_1_text: "More than makeup, a revelation of your inner power.",
+    experience_step_2_title: "Excellence in Detail",
+    experience_step_2_text: "Every line is a signature, every finish is perfection.",
+    experience_step_3_title: "Your Moment",
+    experience_step_3_text: "Enter a sanctuary where you are the only priority.",
     
     // Footer
     footer_rights: "All rights reserved.",
