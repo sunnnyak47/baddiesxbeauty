@@ -1,9 +1,14 @@
+"use client";
+
+import { useLanguage } from "@/context/LanguageContext";
+
 export default function ContactPage() {
+  const { t } = useLanguage();
   return (
     <section className="min-h-screen pt-32 px-6 text-center">
-      <h1 className="font-playfair text-5xl md:text-7xl mb-8 text-brand-primary">Contact</h1>
+      <h1 className="font-playfair text-5xl md:text-7xl mb-8 text-brand-primary">{t("contact_title")}</h1>
       <p className="font-inter max-w-2xl mx-auto text-brand-accent/70">
-        Prenez rendez-vous chez Baddies Beauty Studio.
+        {t("contact_desc")}
       </p>
     </section>
   );

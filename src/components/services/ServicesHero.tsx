@@ -3,12 +3,14 @@
 import React, { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function ServicesHero() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   
   // Split text for GSAP manipulation
-  const text = "NOS PRESTATIONS".split("");
+  const text = t("services_hero_title").split("");
 
   useGSAP(() => {
     gsap.fromTo(

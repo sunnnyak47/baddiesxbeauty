@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { useLanguage } from "@/context/LanguageContext";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -24,10 +25,11 @@ export default function StickyServiceBlock({
   title,
   description,
   subServices,
-  priceTag = "Sur devis / Sur demande",
+  priceTag,
   alignRight = false,
   specialContent,
 }: StickyServiceBlockProps) {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
 
@@ -97,10 +99,10 @@ export default function StickyServiceBlock({
                 rel="noreferrer"
                 className="px-8 py-3 bg-[#D4AF37] text-black font-inter text-sm font-bold uppercase tracking-wider rounded-full hover:bg-white transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)]"
               >
-                Réserver
+                {t("service_booking_button")}
               </a>
               <span className="font-inter text-brand-primary/50 text-sm tracking-widest uppercase">
-                {priceTag}
+                {priceTag || t("service_price_request")}
               </span>
             </div>
             

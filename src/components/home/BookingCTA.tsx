@@ -1,6 +1,10 @@
+"use client";
+
 import React from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function BookingCTA() {
+  const { t } = useLanguage();
   return (
     <section className="w-full relative z-10 bg-[#050505] overflow-hidden py-32 px-6 flex items-center justify-center text-center">
       {/* Animated subtle gold sweep backdrop */}
@@ -8,10 +12,10 @@ export default function BookingCTA() {
       
       <div className="relative z-10 flex flex-col items-center">
         <h2 className="font-playfair text-5xl md:text-7xl text-brand-primary mb-6">
-          Prête à devenir sublime ?
+          {t("booking_cta_title")}
         </h2>
         <p className="font-inter text-xl text-brand-accent/80 mb-12 max-w-xl">
-          Réservez votre prestation en ligne et laissez-nous révéler votre beauté.
+          {t("booking_cta_text")}
         </p>
         <a
           href="https://www.planity.com/baddies-beauty-studio-60440-nanteuil-le-haudoin"
@@ -19,7 +23,7 @@ export default function BookingCTA() {
           rel="noreferrer"
           className="px-10 py-5 bg-[#D4AF37] text-black font-inter text-lg font-bold uppercase tracking-widest rounded-full hover:bg-white transition-all transform hover:scale-105"
         >
-          Réserver maintenant
+          {t("booking_cta_button")}
         </a>
       </div>
     </section>

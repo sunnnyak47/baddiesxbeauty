@@ -1,3 +1,5 @@
+"use client";
+
 import HomeHero from "@/components/home/HomeHero";
 import StatsBar from "@/components/home/StatsBar";
 import ServicesPreview from "@/components/home/ServicesPreview";

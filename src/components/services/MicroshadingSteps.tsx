@@ -1,12 +1,15 @@
-import React from "react";
+"use client";
+
 import { Leaf, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function MicroshadingSteps() {
+  const { t } = useLanguage();
   const steps = [
-    "Consultation",
-    "Dessin de la forme",
-    "Validation",
-    "Microshading",
+    t("service_brows_step_1"),
+    t("service_brows_step_2"),
+    t("service_brows_step_3"),
+    t("service_brows_step_4"),
   ];
 
   return (
@@ -15,7 +18,7 @@ export default function MicroshadingSteps() {
       <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-950/30 border border-green-500/30 rounded-full mb-8">
         <Leaf size={16} className="text-green-500" />
         <span className="font-inter text-sm text-green-400 tracking-wide">
-          Pigments 100% organiques
+          {t("service_brows_tag")}
         </span>
       </div>
 

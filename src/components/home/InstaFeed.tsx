@@ -1,13 +1,17 @@
+"use client";
+
 import React from "react";
 import { Camera } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 const DEMO_PICS = [1, 2, 3, 4, 5, 6];
 
 export default function InstaFeed() {
+  const { t } = useLanguage();
   return (
     <section className="w-full bg-black py-12 relative z-10">
       <div className="w-full flex-col flex items-center justify-center mb-10">
-        <h2 className="font-playfair text-2xl md:text-3xl text-brand-primary mb-2">Suivez notre univers</h2>
+        <h2 className="font-playfair text-2xl md:text-3xl text-brand-primary mb-2">{t("insta_title")}</h2>
         <a 
           href="https://instagram.com/baddiesxbeauty" 
           target="_blank" 

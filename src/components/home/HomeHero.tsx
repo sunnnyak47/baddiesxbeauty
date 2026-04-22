@@ -7,6 +7,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { ChevronDown } from "lucide-react";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -14,6 +16,7 @@ if (typeof window !== "undefined") {
 const HeroCanvas = dynamic(() => import("./HeroCanvas"), { ssr: false });
 
 export default function HomeHero() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -42,11 +45,11 @@ export default function HomeHero() {
       
       {/* Overlay Content */}
       <div ref={contentRef} className="relative z-10 flex flex-col items-center justify-center px-6 text-center">
-        <h1 className="font-playfair text-5xl md:text-7xl lg:text-8xl text-white mb-6 animate-shimmer bg-[linear-gradient(110deg,#ffffff,45%,#D4AF37,55%,#ffffff)] bg-[length:200%_auto] bg-clip-text text-transparent">
-          SUBLIMEZ VOTRE BEAUTÉ
+        <h1 className="font-playfair text-5xl md:text-7xl lg:text-8xl text-white mb-6 animate-shimmer bg-[linear-gradient(110deg,#ffffff,45%,#D4AF37,55%,#ffffff)] bg-[length:200%_auto] bg-clip-text text-transparent uppercase">
+          {t("hero_title")}
         </h1>
         <p className="font-inter text-lg md:text-xl text-brand-accent/80 uppercase tracking-widest mb-10 max-w-2xl mx-auto">
-          Spécialiste maquillage &middot; Coiffure GLAM &middot; Oise / Paris
+          {t("hero_subtext")}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-6">
@@ -56,13 +59,13 @@ export default function HomeHero() {
             rel="noreferrer"
             className="px-8 py-4 bg-brand-primary text-black font-semibold uppercase tracking-wider rounded-full hover:bg-[#FBF5B7] transition-all"
           >
-            Prendre RDV
+            {t("hero_cta_booking")}
           </a>
           <a
             href="#services"
             className="px-8 py-4 border border-brand-primary text-brand-primary font-semibold uppercase tracking-wider rounded-full hover:bg-brand-primary/10 transition-all"
           >
-            Découvrir
+            {t("hero_cta_discover")}
           </a>
         </div>
       </div>

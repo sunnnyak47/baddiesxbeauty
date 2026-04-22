@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { useLanguage } from "@/context/LanguageContext";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -17,14 +18,15 @@ interface Stat {
   decimals?: number;
 }
 
-const STATS: Stat[] = [
-  { id: "stat-1", endValue: 15.8, suffix: "K+", label: "Abonnés Instagram", decimals: 1 },
-  { id: "stat-2", endValue: 131, suffix: "+", label: "Avis 5 étoiles", decimals: 0 },
-  { id: "stat-3", endValue: 6, suffix: "+", label: "Ans d'expérience", decimals: 0 },
-];
-
 export default function StatsBar() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const STATS: Stat[] = [
+    { id: "stat-1", endValue: 15.8, suffix: "K+", label: t("stats_instagram"), decimals: 1 },
+    { id: "stat-2", endValue: 131, suffix: "+", label: t("stats_reviews"), decimals: 0 },
+    { id: "stat-3", endValue: 6, suffix: "+", label: t("stats_experience"), decimals: 0 },
+  ];
 
   useGSAP(() => {
     STATS.forEach((stat) => {

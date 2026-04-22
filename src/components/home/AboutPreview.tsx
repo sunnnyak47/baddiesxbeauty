@@ -5,12 +5,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Star } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 export default function AboutPreview() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const leftContent = useRef<HTMLDivElement>(null);
   const rightContent = useRef<HTMLDivElement>(null);
@@ -55,7 +57,7 @@ export default function AboutPreview() {
         <div ref={leftContent} className="relative w-full aspect-[4/5] md:aspect-square lg:aspect-[4/5] rounded-3xl overflow-hidden bg-white/5 border border-brand-primary/20">
           {/* Real image goes here, using gradient placeholder for now */}
           <div className="absolute inset-0 bg-gradient-to-tr from-brand-primary/10 to-transparent flex items-center justify-center">
-            <span className="font-inter text-brand-primary/40 uppercase tracking-widest text-sm">Image Mathilde</span>
+            <span className="font-inter text-brand-primary/40 uppercase tracking-widest text-sm">{t("about_mathilde_image")}</span>
           </div>
           
           {/* Floating Badge */}
@@ -65,7 +67,7 @@ export default function AboutPreview() {
             </div>
             <div>
               <p className="font-playfair font-bold text-xl text-white">5.0</p>
-              <p className="font-inter text-[10px] text-brand-accent/60 uppercase">Avis clients</p>
+              <p className="font-inter text-[10px] text-brand-accent/60 uppercase">{t("about_reviews_label")}</p>
             </div>
           </div>
         </div>
@@ -73,17 +75,17 @@ export default function AboutPreview() {
         {/* Right Column - Text */}
         <div ref={rightContent} className="flex flex-col justify-center">
           <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl text-brand-primary mb-8">
-            À propos de Baddies Beauty
+            {t("about_title")}
           </h2>
           <p className="font-inter text-lg text-brand-accent/80 leading-relaxed mb-6">
-            Créé par Mathilde, <span className="text-white font-semibold">Baddies Beauty Studio</span> est un espace dédié à vous sublimer. 
+            {t("about_text_1")}
           </p>
           <p className="font-inter text-lg text-brand-accent/80 leading-relaxed mb-10">
-            Maquillage sur mesure, coiffure GLAM, beauté du regard... Chaque prestation est pensée pour vous redonner confiance et mettre en valeur votre beauté naturelle pour tous vos événements en Oise ou à Paris.
+            {t("about_text_2")}
           </p>
           <div className="pt-4 border-t border-brand-primary/20">
-            <h3 className="font-playfair text-2xl text-white italic mb-2">Mathilde</h3>
-            <p className="font-inter text-sm text-brand-primary uppercase tracking-widest">Fondatrice & Experte Beauté</p>
+            <h3 className="font-playfair text-2xl text-white italic mb-2">{t("about_founder")}</h3>
+            <p className="font-inter text-sm text-brand-primary uppercase tracking-widest">{t("about_role")}</p>
           </div>
         </div>
 

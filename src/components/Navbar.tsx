@@ -7,26 +7,28 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Menu, X } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const NAV_LINKS = [
-  { label: "Accueil", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "Galerie", href: "/galerie" },
-  { label: "Mariées", href: "/mariees" },
-  { label: "Formations", href: "/formations" },
-  { label: "Contact", href: "/contact" },
-];
-
 const PLANITY_URL = "https://www.planity.com/baddies-beauty-studio-60440-nanteuil-le-haudoin";
 
 export default function Navbar() {
+  const { locale, setLocale, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+
+  const NAV_LINKS = [
+    { label: t("nav_home"), href: "/" },
+    { label: t("nav_services"), href: "/services" },
+    { label: t("nav_gallery"), href: "/galerie" },
+    { label: t("nav_bridal"), href: "/mariees" },
+    { label: t("nav_training"), href: "/formations" },
+    { label: t("nav_contact"), href: "/contact" },
+  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -144,15 +146,35 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* CTA & Mobile Toggle */}
+          {/* CTA, Language Switcher & Mobile Toggle */}
           <div className="flex items-center gap-4 z-50">
+            {/* Language Switcher */}
+            <div className="hidden sm:flex items-center bg-white/5 border border-brand-primary/20 rounded-full p-1 mr-2">
+              <button
+                onClick={() => setLocale("fr")}
+                className={`px-2 py-1 rounded-full text-[10px] font-bold transition-all ${
+                  locale === "fr" ? "bg-brand-primary text-black" : "text-brand-accent hover:text-brand-primary"
+                }`}
+              >
+                FR
+              </button>
+              <button
+                onClick={() => setLocale("en")}
+                className={`px-2 py-1 rounded-full text-[10px] font-bold transition-all ${
+                  locale === "en" ? "bg-brand-primary text-black" : "text-brand-accent hover:text-brand-primary"
+                }`}
+              >
+                EN
+              </button>
+            </div>
+
             <a
               href={PLANITY_URL}
               target="_blank"
               rel="noreferrer"
               className="bg-[#D4AF37] text-black font-inter text-sm font-semibold uppercase tracking-wider px-6 py-2.5 rounded-full hover:bg-[#FBF5B7] transition-colors"
             >
-              Réserver
+              {t("nav_booking")}
             </a>
             <button
               className="p-2 lg:hidden text-brand-primary"
@@ -175,6 +197,26 @@ export default function Navbar() {
             exit="closed"
             className="fixed inset-0 z-40 bg-black flex flex-col justify-center items-center lg:hidden"
           >
+            {/* Language Switcher in Mobile Menu */}
+            <div className="absolute top-24 flex items-center bg-white/5 border border-brand-primary/20 rounded-full p-1 mb-8">
+              <button
+                onClick={() => setLocale("fr")}
+                className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
+                  locale === "fr" ? "bg-brand-primary text-black" : "text-brand-accent"
+                }`}
+              >
+                FRANÇAIS
+              </button>
+              <button
+                onClick={() => setLocale("en")}
+                className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
+                  locale === "en" ? "bg-brand-primary text-black" : "text-brand-accent"
+                }`}
+              >
+                ENGLISH
+              </button>
+            </div>
+
             <div className="flex flex-col items-center gap-8">
               {NAV_LINKS.map((link) => {
                 const isActive = pathname === link.href;
